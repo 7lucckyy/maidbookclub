@@ -1,44 +1,44 @@
-const mysql= require('mysql')
+// const mysql= require('mysql')
 
-const pool = mysql.createPool(
-  {
-      database: 'heroku_46ef36f360edddc',
-      password: '502f1702',
-      user: 'bf671ca4f2cbae',
-      host: 'us-cdbr-east-05.cleardb.net'
-  }
-)
+// const pool = mysql.createPool(
+//   {
+//       database: 'heroku_46ef36f360edddc',
+//       password: '502f1702',
+//       user: 'bf671ca4f2cbae',
+//       host: 'us-cdbr-east-05.cleardb.net'
+//   }
+// )
 
 
-exports.view = (req, res) => {
-  pool.getConnection((err, connection) => {
-    if (err) throw err
-    console.log(`connected ${connection.threadId}`);
-    connection.query('SELECT  * FROM user', (err, rows) => {
-      connection.release();
-      if (!err){
-         res.render('home',{rows}) 
-      } else { console.log(err); }
-      console.log('the data from user table: \n',rows);
-    } )
- })  
-}
-exports.find = (req, res) => {
-  pool.getConnection((err, connection) => {
-    if (err) throw err
-    console.log(`connected ${connection.threadId}`);
+// exports.view = (req, res) => {
+//   pool.getConnection((err, connection) => {
+//     if (err) throw err
+//     console.log(`connected ${connection.threadId}`);
+//     connection.query('SELECT  * FROM user', (err, rows) => {
+//       connection.release();
+//       if (!err){
+//          res.render('home',{rows}) 
+//       } else { console.log(err); }
+//       console.log('the data from user table: \n',rows);
+//     } )
+//  })  
+// }
+// exports.find = (req, res) => {
+//   pool.getConnection((err, connection) => {
+//     if (err) throw err
+//     console.log(`connected ${connection.threadId}`);
 
-    let searchTerm = req.body.search;
+//     let searchTerm = req.body.search;
 
-    connection.query('SELECT * FROM user WHERE firstName LIKE ?', ['%'+ searchTerm+ '%'], (err, rows) => {
-      connection.release();
-      if (!err) {
-        res.render('home', {rows})
-      }else{console.log(err);}
-    })
+//     connection.query('SELECT * FROM user WHERE firstName LIKE ?', ['%'+ searchTerm+ '%'], (err, rows) => {
+//       connection.release();
+//       if (!err) {
+//         res.render('home', {rows})
+//       }else{console.log(err);}
+//     })
 
-  })
-}
+//   })
+// }
 
 exports.form = (req, res) => {
   res.render('add-user')

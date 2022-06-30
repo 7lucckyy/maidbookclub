@@ -3,8 +3,8 @@ const router = express.Router();
 
 const userController = require('../controllers/usersControllers')
 
-router.get('/', userController.view)
-router.post('/', userController.find)
+router.get('/', userController.home)
+
 router.get('/adduser', userController.form)
 router.post('/adduser', userController.create)
 router.get('/about', userController.about)

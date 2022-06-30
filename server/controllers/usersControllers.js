@@ -1,13 +1,13 @@
-// const mysql= require('mysql')
+const mysql= require('mysql');
 
-// const pool = mysql.createPool(
-//   {
-//       database: 'heroku_46ef36f360edddc',
-//       password: '502f1702',
-//       user: 'bf671ca4f2cbae',
-//       host: 'us-cdbr-east-05.cleardb.net'
-//   }
-// )
+const pool = mysql.createPool(
+  {
+      database: 'heroku_46ef36f360edddc',
+      password: '502f1702',
+      user: 'bf671ca4f2cbae',
+      host: 'us-cdbr-east-05.cleardb.net'
+  }
+)
 
 
 // exports.view = (req, res) => {
@@ -40,6 +40,9 @@
 //   })
 // }
 
+exports.home=(req, res)=>{
+  res.render('home')
+}
 exports.form = (req, res) => {
   res.render('add-user')
 }
